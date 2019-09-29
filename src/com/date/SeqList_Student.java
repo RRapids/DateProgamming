@@ -37,12 +37,12 @@ public class SeqList_Student {
         String[] titles = {"不及格", "及格", "中等", "良好", "优秀"};//字符串数组指定分类名称
         int[] result = groupCount(lista, grade);//分类统计，返回存放统计结果的数组
         printCount(lista, titles, result);
-        String name = "小白";
+        String name = "麻子";
         //key 包含姓名，比较相等，按姓名查找
         Student key = new Student(name, 0);
         System.out.println("\"" + name + "\"的成绩是:" + lista.get(lista.search(key)).score);
         System.out.println("删除" + lista.remove(key));
-        //由顺序表构造拍寻顺序表
+        //由顺序表构造排序顺序表
         SeqList<Student> slistb = new SortedSeqList<Student>();
         result = groupCount(slistb, grade);
         printCount(slistb, titles, result);
