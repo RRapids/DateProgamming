@@ -1,10 +1,9 @@
 package com.date;
 
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
-
 public class SinglyList<T> extends Object {
+    protected Object[] element;
+    protected int n;
+    protected int length;
 
     public Node<T> head; //头指针，指向单链表的头结点
 
@@ -51,6 +50,84 @@ public class SinglyList<T> extends Object {
     //返回单链表长度，O（n）
     public int size() {
         return size();
+    }
+    public String toString(){
+        String str = this.getClass().getName()+"(";
+        for (Node<T> p=this.head.next;p!=null;p=p.next){
+            str+=p.data.toString();
+            if (p.next!=null)
+                str+=",";
+        }
+        return str+")";
+    }
+    public Node<T> insert(int i,T x){
+        if (x==null)
+            throw new NullPointerException("x == null");
+        Node<T> front = this.head;
+        for (int j =0;front.next!=null&&j<i;j++)
+            front = front.next;
+        front.next=new Node<T>(x,front.next);
+        return front.next;
+    }
+    public Node<T> insert(T x){
+        return insert(Integer.MAX_VALUE,x);
+
+    }
+    public T remove(int i){
+        Node<T> front = this.head;
+        for (int j =0;front.next!=null&&j<i;j++)
+            front = front.next;
+        if (i>=0&&front.next!=null){
+            T old = front.next.data;
+            front.next = front.next.next;
+            return old;
+        }
+        return null;
+    }
+
+    public void clear(){
+        this.head.next = null;
+    }
+
+    public int search(T key) {
+        return 0;
+    }
+
+    public boolean contains(T key){
+        return this.search(key) != -1;
+    }
+
+    public int insertDifferent(T x){
+        if (x==null){
+            throw new NullPointerException("x==null");     //抛出空对象异常
+        }
+        if(this.isEmpty()){   //空表,尾插入, O(1)
+            this.insert(x);
+            return -1;
+        }
+        this.insert(x);   //查找不成功，尾插入, O(1)
+        return 1;
+
+    }
+
+    public static<T> void reverse(SinglyList<T> list){
+        Node<T> p = list.head.next,succ=null,front=null;
+        while (p!=null){
+            succ= p.next;
+            p.next = front;
+            front = p;
+            p=succ;
+        }
+        list.head.next=front;
+    }
+
+    public static<T> void s_reverse(SinglyList<T> list){
+        Node<T> q = list.head.next,succ=null,front=null;
+        while (q!=null){
+        }
+//        q.next = head.next;
+//        head.next = q;
+
     }
 
 
